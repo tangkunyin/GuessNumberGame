@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.vision.game.bean.KactivityInfo">
+	<select id="countAllGame" resultType="int">
+		select count(*)  from kactivityinfo
+	</select>
+	
+	<select id="conutCurrentAcUsers" resultType="int" parameterType="int">
+		SELECT acCrrentPeople FROM kactivityinfo WHERE activityId=#{activityId};
+	</select>
+	
+	<select id="selectAllGame" resultType="KactivityInfo">
+		select * from kactivityinfo ORDER BY week ASC
+	</select>	
+	
+	<select id="findByGameAcId" parameterType="int" resultType="KactivityInfo">
+		select * from kactivityinfo where activityId=#{activityId}
+	</select>
+	
+	<select id="findGameByKtvId" parameterType="int" resultType="KactivityInfo">
+		SELECT * FROM kactivityinfo WHERE ktvId=#{ktvId}
+	</select>
+	
+	<insert id="insertGame" parameterType="KactivityInfo">
+	insert into kactivityinfo(ktvId,activityId,acName,acRule,acStartDate,acStartTime,acEndTime,acCloseTime,prize1,prize2,prize3,prize4,prize5,prize6,prize7,prize8,prize9,prize10,winNum,acPicAddress,acCrrentPeople,week) values(#{ktvId},#{activityId},#{acName},#{acRule},#{acStartDate},#{acStartTime},#{acEndTime},#{acCloseTime},#{prize1},#{prize2},#{prize3},#{prize4},#{prize5},#{prize6},#{prize7},#{prize8},#{prize9},#{prize10},#{winNum},#{acPicAddress},#{acCrrentPeople},#{week})
+	</insert>
+	
+	<delete id="deleteGame" parameterType="int">
+		delete from kactivityinfo where activityId=#{activityId}		
+	</delete>
+	
+	<update id="updateGame" parameterType="KactivityInfo">
+		update kactivityinfo set acName=#{acName},acValid=#{acValid},acStartDate=#{acStartDate},acStartTime=#{acStartTime},acEndTime=#{acEndTime},acCloseTime=#{acCloseTime},acRule=#{acRule},prize1=#{prize1},prize2=#{prize2},prize3=#{prize3},prize4=#{prize4},prize5=#{prize5},prize6=#{prize6},prize7=#{prize7},prize8=#{prize8},prize9=#{prize9},prize10=#{prize10},week=#{week},winNum=#{winNum} where activityId=#{activityId}
+	</update>
+	
+	<!-- 单独增加二维码地址。根据活动名称 -->
+	<update id="updateQRCodeImg" parameterType="Map">
+		update kactivityinfo set qrcodeImg=#{qrcodeImg} where acName=#{acName}
+	</update>
+	<select id="selectQRCodeImg" parameterType="int" resultType="String">
+		select  qrcodeImg from kactivityinfo where activityId=#{activityId}
+	</select>
+</mapper>

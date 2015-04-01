@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+						http://www.springframework.org/schema/mvc 
+						http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd 
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx-3.0.xsd ">
+	
+	<!-- adminUser注入开始 -->
+	<bean id="adminUserDao" class="com.vision.game.dao.impl.AdminUserDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="aduserService" class="com.vision.game.service.AdminUserService">
+		<property name="adminUserDao" ref="adminUserDao" />
+	</bean>
+	
+	<!-- KactivityTemplaite注入开始 -->
+	<bean id="KacTemplaiteDao" class="com.vision.game.dao.impl.KactivityTemplaiteDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="KacTemplaiteService" class="com.vision.game.service.KactivityTemplaiteService">
+		<property name="KacTemplaiteDao" ref="KacTemplaiteDao" />
+	</bean>
+	
+	<!-- Game:KactivityInfo 注入开始 -->
+	<bean id="GameInfoDao" class="com.vision.game.dao.impl.KactivityInfoDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="GameInfoService" class="com.vision.game.service.KactivityInfoService">
+		<property name="gameInfoDao" ref="GameInfoDao" />
+	</bean>
+	
+	<!-- KacUser 注入开始 -->
+	<bean id="KacUserDao" class="com.vision.game.dao.impl.KactivityUserDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="kacUserService" class="com.vision.game.service.KactivityUserService">
+		<property name="kacUserDao" ref="KacUserDao" />
+	</bean>
+</beans>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.vision.game.bean.KactivityUser">
+	<select id="selectAllAcUser" resultType="KactivityUser">
+		select * from kactivityuser order by joinTime desc
+	</select>	
+	
+	<select id="findAcUserById" parameterType="int" resultType="KactivityUser">
+		select * from kactivityuser where userId=#{userId}
+	</select>
+	
+	<insert id="addAcUser" parameterType="KactivityUser">
+		insert into kactivityuser(userId,nickname,headpicpath,ktvId,activityId,joinTime,yourAnswer,isWinner,sex) values(#{userId},#{nickname},#{headpicpath},#{ktvId},#{activityId},#{joinTime},#{yourAnswer},#{isWinner},#{sex})
+	</insert>
+	
+	<delete id="deleteAcUser" parameterType="int">
+		delete from kactivityuser where userId=#{userId}		
+	</delete>
+	
+	<!-- 与开奖时有关 -->
+	<select id="findAcUserByRightAnswer" parameterType="String" resultType="KactivityUser">
+		select * from kactivityuser where yourAnswer=#{yourAnswer}
+	</select>
+	
+	<!-- 查询第n次摇奖产生的用户 -->
+	<select id="findAcWinerByTH" parameterType="int" resultType="KactivityUser">
+		SELECT * FROM kactivityuser WHERE isWinner='y' AND th=#{th};
+	</select>
+	
+	<!-- 摇奖期间，根据isWinner字段查询用户中奖信息。返回一个集合 -->
+	<select id="selectGuessNumWinner" resultType="KactivityUser">
+		SELECT * FROM kactivityuser WHERE isWinner='y' ORDER BY th ASC
+	</select>
+	
+	<!-- 开奖完成后，将获奖用户的信息更新过来 -->
+	<update id="updateAcWinUser" parameterType="KactivityUser">
+		update kactivityuser set isWinner='y' where yourAnswer=#{yourAnswer}
+	</update>
+	
+	<!-- 活动结束时，更新非中奖用户信息 -->
+	<update id="updateAcFailureUser" parameterType="KactivityUser">
+		update kactivityuser set isWinner='n' where isWinner is NULL
+	</update>
+	
+	<!-- 记录该用户是第几次被摇中。根据用户自己的答案来更新 -->
+	<update id="updateAcWinUserTh" parameterType="Map">
+		update kactivityuser set th=#{th} where yourAnswer=#{yourAnswer}
+	</update>
+</mapper>

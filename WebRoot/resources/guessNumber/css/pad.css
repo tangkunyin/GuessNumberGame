@@ -1,0 +1,50 @@
+  body {
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	background-color: #DFFFCA;
+  } #main {
+	margin-left: auto;
+	margin-right: auto;
+	padding-top:20px;
+	width: 481px;
+	height: auto;
+	text-align: center;
+	position: relative;
+  } #show {
+	width: 481px;
+	height: auto;
+	margin-top: 5px;
+	position: relative;
+	float: left;
+  } #keybord {
+	width: 481px;
+	height: auto;
+	position: relative;
+	margin: 0px;
+	float: left;
+  }
+  
+  ul {
+      list-style-type: none;
+      margin: 0px;
+      padding: 0px;
+  }
+  
+  li {
+	float: left;
+	height: auto;
+	width: 159.3px;
+	position: relative;
+	margin: 0px;
+	padding: 0px;
+  } .key {
+	height: 30px;
+	width: 130px;
+	margin-top: 7.5px;
+	font-size: 16px;
+	font-weight: 400;
+	background-color: #FFF;
+  }

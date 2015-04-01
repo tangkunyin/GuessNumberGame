@@ -1,0 +1,67 @@
+﻿// acValid字段：活动状态：
+	0：活动已过期
+	1：活动进行中
+	2：活动未开始
+
+create table kactivitytemplaite(
+	ktvId int(11)  auto_increment,
+	activityId int(11)  Unique not null,
+	acStartTime Date, //8:00
+	acEndTime Date, //10:00
+	acEndTime2 Date. //10:20 结束	
+	acName varchar(100),
+	acDescription varchar(200) default null,
+	acValid tinyint default 2,
+	acPicAddress varchar(200) default null,
+	primary key(ktvId,activityId),
+	foreign key(ktvId) references songhallinfo(Id) on update cascade
+);
+
+--------------------------------------------
+// is null 未开奖  isdate 开过将    (now >= acStartDate + '' + acStartTime && now <= acEndDate + '' + acEndTime)->正在进行中 Banner 猜数字赢大奖
+						now > acEndDate + '' + acEndTime && isnull(acCloseTime) -> 参加人的列表    Banner 猜数字赢大奖
+						now > acEndDate + '' + acEndTime && isdate(acCloseTime) -> 获奖人的列表和活动信息   Banner 猜数字赢大奖
+						
+						now > acEndDate + '' + acEndTime && isdate(acCloseTime) -> Banner KTV活动介绍
+ 						待完善
+
+create table kactivityinfo(
+	ktvId int(11)  auto_increment,
+	activityId int(11)  Unique not null,
+	acStartDate Date, //2013-05-08
+	acStartTime Date, //20:00:00
+	
+	acEndDate Date, //2013-05-09
+	acEndTime Date, //05:00:00
+	
+	acName varchar(100),  //活动名称
+	acDescription varchar(200) default null,
+	rightAnswer varchar(100) default null,
+	
+	acCloseTime Date;
+	acPicAddress varchar(200) default null,
+	acCrrentPeople int(11),
+	primary key(ktvId,activityId),
+	foreign key(ktvId) references songhallinfo(Id) on update cascade
+);
+
+-------------------------------------------------------------------------------------
+
+
+create table kactivityUser(
+	userId int(11) not null auto_increment,
+	nickname varchar(40),
+	headpicpath varchar(50),
+	ktvId int(11)  not null,
+	activityId int(11) not null,
+	joinTime Date,
+	yourAnswer varchar(200),
+	isWinner Boolean,
+	primary key(userId,ktvId,activityId),
+	foreign key(userId) references customerinfo(id) on update cascade,
+	foreign key(ktvId) references kactivityinfo(ktvId) on update cascade,
+	foreign key(activityId) references kactivityinfo(activityId) on update cascade
+);
+
+---------------------------------------------------------------------------------------
+后台管理，使用Myktv2数据库的adminuser表

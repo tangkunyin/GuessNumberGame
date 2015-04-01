@@ -1,0 +1,13 @@
+一、数据库链接[目录：/webapps/game/WEB-INF/class]：
+	applicationContext.xml
+	c3p0-config.xml
+	mybatis-config.xml
+	============================修改数据链接地址，用户名和密码
+	
+二、将项目中所有:http://localhost/字段改为正式测试的地址
+	
+<!-- 配置访问前缀  本地测试：http://localhost-->
+ <context-param>
+ 	<param-name>url-prev</param-name>
+ 	<param-value><![CDATA[http://localhost]]></param-value>
+ </context-param>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+						http://www.springframework.org/schema/mvc 
+						http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd 
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-3.0.xsd ">
+
+	<!-- 用户后台管理登录 -->
+	<!-- MultiActionController配置，根据参数决定访问方法 -->
+	<bean name="/Login.ktv" class="com.vision.game.controller.LoginController">
+		<property name="methodNameResolver">
+		<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+				<!-- 指定参数名为method -->
+				<property name="paramName" value="method" />		
+			</bean>
+		</property>
+	</bean>
+
+	<!-- 模版模块 -->
+	<bean name="/addTemp.ktv" class="com.vision.game.controller.AddGameTemp" />
+	<bean name="/ManageTemp.ktv" class="com.vision.game.controller.ManageTemp">
+		<property name="methodNameResolver">
+			<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+				<!-- 指定参数名为action -->
+				<property name="paramName" value="action" />		
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- 游戏活动模块 -->
+	<bean name="/ManageGame.ktv" class="com.vision.game.controller.ManageGame">
+		<property name="methodNameResolver">
+			<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+				<!-- 指定参数名为action -->
+				<property name="paramName" value="action" />		
+			</bean>
+		</property>
+	</bean>
+	<!-- 增加游戏活动 。-->
+	<bean name="/addGame.ktv" class="com.vision.game.controller.AddGame">
+		<property name="methodNameResolver">
+			<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+				<property name="paramName" value="method" />		
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- 猜数字赢大奖活动控制中心 -->
+	<bean name="/GuessNum.ktv" class="com.vision.game.Servlet.GuessNumAction">
+		<property name="methodNameResolver">
+			<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+				<property name="paramName" value="action" />		
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- TV端无刷新信息需要获取数据的功能 -->
+   <bean name="/tv.ktv" class="com.vision.game.controller.TVShowController">
+   		<property name="methodNameResolver">
+			<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+				<property name="paramName" value="action" />		
+			</bean>
+		</property>
+   </bean>
+	
+	<!-- ============================以下是功能性组建=========================================== -->
+	<!-- 关键字检索 -->
+	<bean name="/KeyWordsAction.ktv" class="com.vision.game.controller.QueryShiFromKtvName" />
+	<!-- 日期合法性校验 。包括检验活动名称是否重复-->
+	<bean name="/checkDataValidity.ktv" class="com.vision.game.utils.CheckDateType">
+		<property name="methodNameResolver">
+			<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+				<property name="paramName" value="method" />		
+			</bean>
+		</property>
+	</bean>
+	<!-- 处理上传 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize">
+        	<value>10240000</value>
+    	</property>
+    	<property name="maxInMemorySize">
+        	<value>4096</value>
+    	</property>
+    	<property name="defaultEncoding">
+    		<value>UTF-8</value>
+    	</property>
+   </bean>
+   
+</beans>

@@ -1,0 +1,16 @@
+<li>
+     <input type="button" value="重置" id="reset" class="key"/>
+      </li>
+      <li>
+        <input type="button" value="退格" id="delete" class="key"/>
+      </li>
+	  
+	  
+<div id="acbutt">
+  	 <a href="#" class="acbutton">活动奖品</a>
+     <a href="#" class="acbutton">已参加用户</a>
+  </div>
+  
+
+  
+  

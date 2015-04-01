@@ -1,0 +1,45 @@
+@CHARSET "UTF-8";
+
+html {
+	-webkit-text-size-adjust：none;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+	font-family: Verdana, Geneva, sans-serif;
+	background-color: #A4E1FF;
+	text-align: center;
+}
+
+p {
+	padding: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 10px;
+	margin-left: 0px;
+}
+#msg {
+	width: 300px;
+	height: auto;
+	margin-top: 60px;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+}
+
+#login {
+	padding-top: 20px;
+	height: 145px;
+	width: 250px;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	border: 1px solid #6CF;
+}
+#uname{
+  width:150px;
+}
+#pword{
+	width:150px;
+}

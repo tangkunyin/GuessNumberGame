@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	 <settings>  
+        <!-- 全局映射器启用缓存 -->  
+        <setting name="cacheEnabled" value="true" />  
+        <!-- 查询时，关闭关联对象即时加载以提高性能 -->  
+        <setting name="lazyLoadingEnabled" value="true" />  
+        <!-- 设置关联对象加载的形态，此处为按需加载字段(加载字段由SQL指定)，不会加载关联表的所有字段，以提高性能 -->  
+        <setting name="aggressiveLazyLoading" value="false" />  
+        <!-- 对于未知的SQL查询，允许返回不同的结果集以达到通用的效果 -->  
+        <setting name="multipleResultSetsEnabled" value="true" />  
+        <!-- 允许使用列标签代替列名 -->  
+        <setting name="useColumnLabel" value="true" />  
+        <!-- 允许使用自定义的主键值(比如由程序生成的UUID 32位编码作为键值)，数据表的PK生成策略将被覆盖 -->  
+        <setting name="useGeneratedKeys" value="true" />  
+        <!-- 给予被嵌套的resultMap以字段-属性的映射支持 -->  
+        <setting name="autoMappingBehavior" value="FULL" />  
+        <!-- 对于批量更新操作缓存SQL以提高性能  -->  
+        <setting name="defaultExecutorType" value="BATCH" />  
+        <!-- 数据库超过25000秒仍未响应则超时 -->  
+        <setting name="defaultStatementTimeout" value="25000" />  
+    </settings>  
+	<!-- 设置类型别名，这样可以在实体xml文件中少写对对象的引用路径 -->
+	<typeAliases>
+		<typeAlias type="com.vision.game.bean.AdminUser" alias="AdminUser"/>
+		<typeAlias type="com.vision.game.bean.KactivityTemplaite" alias="KactivityTemplaite"/>
+		<typeAlias type="com.vision.game.bean.KactivityInfo" alias="KactivityInfo"/>
+		<typeAlias type="com.vision.game.bean.KactivityUser" alias="KactivityUser"/>
+		<typeAlias type="com.vision.game.bean.SongHallInfo" alias="SongHallInfo"/>
+		<typeAlias type="com.vision.game.bean.Customerinfo" alias="Customerinfo"/>
+	</typeAliases>
+	<!-- Spring中的此项配置会覆盖Mybatis -->
+    <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/myktv2?useUnicode=true&amp;characterEncoding=UTF-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="66597425"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+    <mapper resource="com/vision/game/bean/AdminUser.xml"/>
+    <mapper resource="com/vision/game/bean/KactivityTemplaite.xml"/>
+    <mapper resource="com/vision/game/bean/KactivityInfo.xml"/>
+    <mapper resource="com/vision/game/bean/KactivityUser.xml"/>
+    <mapper resource="com/vision/game/bean/SongHallInfo.xml"/>
+    <mapper resource="com/vision/game/bean/Customerinfo.xml"/>
+  </mappers>
+</configuration>

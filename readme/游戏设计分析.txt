@@ -1,0 +1,46 @@
+一、关于数据库：
+	数据库为：myktv2
+	
+	表一：kactivityinfo
+		    ktvId               Interger    --ktv编号
+			(从SonghallInfo里面读，包括KTV名字等信息)
+			
+			activityId			Interger    --活动编号
+			
+			activityTime		String      --活动开始和结束时间
+			(是否需要支持周一到周日，特殊日设置，如果是特殊日，这样意味着，需要增加活动模板表，从活动模板表生成活动表)
+			
+			acDescription		String      --活动描述
+			acValid             Boolean     --活动是否有效【true|false】
+			acPicAddress        String      --活动图片【海报】地址
+			acCurrentPeople     Integer     --当前参与人数
+			
+	表二：kactivityUser
+			userId				Integer     --用户编号
+			ktvId				Integer     --ktv编号
+			activityId			Integer     --活动编号
+			joinTime			Date        --参加时间
+			answer				String      --猜的答案
+			winner              Boolean     --是否得奖
+	------------------------
+	k场传来的数据：ktvId  activityId  userId
+		
+二、页面设计：
+    A、活动没有结束时：
+		外观：
+			1、需要有12键的小键盘；
+			2、输入框和确认按钮；
+			3、前进、返回的箭头按钮；
+			4、活动简介、小海报；
+			5、用户信息【昵称，来自哪里】
+	B、活动结束已经结束：
+		外关：
+			1、提示活动已经结束；
+			2、谁获奖【点击获奖者可以到达他的主页】
+			3、参与人数
+			4、游戏答案
+
+三、技术支持：
+	1、Ajax异步交互；
+	2、Html5、css3、Media Queries（媒介查询）相关技术来实现跨设备跨浏览器的响应式Web设计方案。
+	3、对传入参与解密操作，并加密返回给他。

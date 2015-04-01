@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.vision.game.bean.AdminUser">
+	<select id="countAllAdminUser" resultType="int">
+		select count(*) from total from adminuser
+	</select>
+	
+	<select id="selectAllAdminUser" resultType="AdminUser">
+		select * from adminuser
+	</select>	
+	
+	<select id="findByUserLogin" parameterType="Map" resultType="AdminUser">
+		select * from adminuser where username=#{username} and repassword=#{repassword}
+	</select>
+	
+	<insert id="insertAdminUser" parameterType="AdminUser">
+		insert into adminuser(id,userName,repassword,role,descr,cityId,cityName,areaId,AreaName,status) values(#{id},#{userName},#{repassword},#{role},#{descr},#{cityId},#{cityName},#{areaId},#{AreaName},#{status})
+	</insert>
+	
+	<delete id="deleteAdminUser" parameterType="int">
+		delete from adminuser where id=#{id}		
+	</delete>
+	
+	<update id="updateAdminUser" parameterType="int">
+		update adminuser set userName=#{userName},repassword=#{repassword},role=#{role},descr=#{descr},cityId=#{cityId},cityName=#{cityName},areaId=#{areaId},AreaName=#{AreaName},status=#{status} where id=#{id}
+	</update>
+</mapper>

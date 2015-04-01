@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.vision.game.bean.KactivityTemplaite">
+	
+	<select id="countAllKactivityTemplaite" resultType="int">
+		select count(*)  from kactivitytemplaite
+	</select>
+	
+	<!-- 查看活动名称是否有效 -->
+	<select id="countTempNames" resultType="int" parameterType="String">
+	 	select count(*) totalNames from kactivitytemplaite where tempName=#{tempName}
+	</select>
+	
+	<select id="selectAllKactivityTemplaite" resultType="KactivityTemplaite">
+		select * from kactivitytemplaite
+	</select>	
+	
+	<select id="findByacTempId" parameterType="int" resultType="KactivityTemplaite">
+		select * from kactivitytemplaite where acTempId=#{acTempId}
+	</select>
+	
+	<insert id="insertKactivityTemplaite" parameterType="KactivityTemplaite">
+		insert into kactivitytemplaite(tempName,acRule,tempValid,acPicAddress) values(#{tempName},#{acRule},#{tempValid},#{acPicAddress})
+	</insert>
+	
+	<delete id="deleteKactivityTemplaite" parameterType="int">
+		delete from kactivitytemplaite where acTempId=#{acTempId}		
+	</delete>
+	
+	<update id="updateKactivityTemplaite" parameterType="KactivityTemplaite">
+		update kactivitytemplaite set tempName=#{tempName},acRule=#{acRule},tempValid=#{tempValid},acPicAddress=#{acPicAddress} where acTempId=#{acTempId}
+	</update>
+	
+	<!-- 修改模版使用次数。根据id修改-->
+	<update id="updateTempUsedTimes" parameterType="int">
+		update kactivitytemplaite set tempUsedTimes=#{tempUsedTimes} where acTempId=#{acTempId}
+	</update>
+</mapper>

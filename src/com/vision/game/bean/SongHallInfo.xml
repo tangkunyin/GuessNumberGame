@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.vision.game.bean.SongHallInfo">
+	<select id="selectIdByName" parameterType="String" resultType="int">
+		select id from SongHallInfo where SongHallName=#{SongHallName}
+	</select>
+	
+	<!-- 模糊查询。id存于模版表，SongHallName显示在页面共用户选择 -->
+	<select id="selectNameByLikeName" parameterType="String" resultType="SongHallInfo">
+		select SongHallName from SongHallInfo where SongHallName like concat('%',#{SongHallName},'%')
+	</select>
+</mapper>
